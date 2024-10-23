@@ -25,7 +25,7 @@ COPY ./certificate.crt /etc/nginx/ssl/certificate.crt
 COPY ./private.key /etc/nginx/ssl/private.key
 
 # Copy Nginx configuration file
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 443 for HTTPS
 EXPOSE 443
