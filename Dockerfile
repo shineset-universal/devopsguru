@@ -23,6 +23,7 @@ COPY --from=0 /app/build /usr/share/nginx/html
 
 # Step 8: Expose port 80 to allow external traffic
 EXPOSE 80
+EXPOSE 443
 
 # Step 9: Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
