@@ -264,32 +264,30 @@
   ],
   "Contact": {
     "address": "4321 California St, San Francisco, CA 12345 ",
-    "phone": "+1 123 456 1234",
-    "email": "info@company.com",
-    "facebook": "fb.com",
-    "twitter": "twitter.com",
-    "youtube": "youtube.com"
+    "phone": "+374 77 912 794",
+    "email": "learning@devopsguru.am",
+    "linkedin": "linkedin.com/in/sarmen-gharibian90/"
   },
   "Features": [
     {
       "icon": "fa fa-comments-o",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "One-on-One Learning",
+      "text": "Receive personalized lessons tailored to your individual needs."
     },
     {
       "icon": "fa fa-bullhorn",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Hands-On Experience",
+      "text": "Engage in practical activities to enhance your skills."
     },
     {
       "icon": "fa fa-group",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Interactive Class",
+      "text": "Participate in dynamic discussions and collaborative exercises."
     },
     {
       "icon": "fa fa-magic",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Friendly Environment",
+      "text": "Learn in a supportive space that encourages questions and ideas."
     }
   ]
 }
