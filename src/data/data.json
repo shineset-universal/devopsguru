@@ -14,7 +14,9 @@
     ],
     "Why2": [
       "System services (e.g., systemd)"
-    ]
+    ],
+    "image": "img/linux.jpg"
+
   },
     "About1": {
       "title": "Version Control with Git",
@@ -28,7 +30,8 @@
       ],
       "Why2": [
         "Resolving merge conflicts"
-      ]
+      ],
+      "image": "img/git.png"
     },
     "CI_CD_Pipelines": {
       "title": "CI/CD Pipelines",
@@ -42,7 +45,9 @@
       ],
       "Why2": [
         "Tools: Jenkins, GitLab CI, CircleCI, Azure DevOps"
-      ]
+      ],
+      "image": "img/cicd.png"
+
     },
     "IaC_Configuration_Management": {
       "title": "Infrastructure as Code (IaC) and Configuration Management",
@@ -55,7 +60,9 @@
         
       ],
       "Why2": [
-          "Managing cloud infrastructure (AWS, Azure, GCP)"      ]
+          "Managing cloud infrastructure (AWS, Azure, GCP)"      ],
+          "image": "img/iac.png"
+
     },
     "Containerization_Docker": {
       "title": "Containerization with Docker",
@@ -69,7 +76,8 @@
       "Why2": [
         "Best practices for container security"
 
-      ]
+      ],
+      "image": "img/docker.png"
     },
     "Container_Orchestration_Kubernetes": {
       "title": "Container Orchestration with Kubernetes",
@@ -97,7 +105,8 @@
       ],
       "Why2": [
         "Custom metrics and tracing"
-      ]
+      ],
+      "image": "img/loging.jpg"
     },
     "GitOps_Infrastructure_Automation": {
       "title": "GitOps and Infrastructure Automation",
@@ -110,7 +119,8 @@
       ],
       "Why2": [
         "Continuous delivery with GitOps workflows"
-      ]
+      ],
+      "image": "img/gitops.png"
 
     },
     "Real_World_DevOps_Project": {
@@ -125,7 +135,9 @@
       "Why2": [
     
         "GitOps-based application delivery"
-      ]
+      ],
+      "image": "img/real world.jpg"
+
     },
   
 
