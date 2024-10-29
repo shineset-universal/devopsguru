@@ -8,7 +8,7 @@ export const About = (props) => {
         <div className="row" style={{display:'flex',flexDirection}}>
           <div className="col-xs-12 col-md-6">
             {" "}
-            <img src="img/about.jpg" className="img-responsive" alt="" />{" "}
+            <img src={props.data?.image} className="img-responsive" alt="" />{" "}
           </div>
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
