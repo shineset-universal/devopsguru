@@ -154,8 +154,8 @@ export const Contact = (props) => {
         <div className="container text-center">
           <p>
             &copy; 2024 Sarmen Gharibian. Design by{" "}
-            <a href="https://www.universal-solutions-llc.am" rel="nofollow">
-              TemplateWire
+            <a href="https://devopsguru.am" rel="nofollow">
+              DevOpsGuru
             </a>
           </p>
         </div>
