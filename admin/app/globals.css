@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --bg:        #050810;
+  --bg-2:      #080d1a;
+  --bg-3:      #0c1225;
+  --card-dark: #0f1520;
+  --border:    #1a2340;
+  --accent:    #00d4ff;
+  --accent-2:  #0057ff;
+  --accent-3:  #7b2fff;
+  --text:      #e8edf8;
+  --text-dim:  #7a8aaa;
+  --success:   #00ff88;
+  --warn:      #ffaa00;
+  --danger:    #ff6060;
+  --font-display: 'Syne', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
