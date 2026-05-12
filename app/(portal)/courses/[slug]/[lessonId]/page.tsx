@@ -1,11 +1,12 @@
 import Link from "next/link";
 
-export default function LessonPage({ params }: { params: { slug: string; lessonId: string } }): React.JSX.Element {
+export default async function LessonPage({ params }: { params: Promise<{ slug: string; lessonId: string }> }): Promise<React.JSX.Element> {
+  const { slug, lessonId } = await params;
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <div style={{ padding: "16px 28px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 16 }}>
-        <Link href={`/courses/${params.slug}`} style={{ color: "var(--text-dim)", textDecoration: "none", fontFamily: "Space Mono, monospace", fontSize: 11 }}>← Back to course</Link>
-        <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 16, color: "var(--text)" }}>Lesson {params.lessonId}</div>
+        <Link href={`/courses/${slug}`} style={{ color: "var(--text-dim)", textDecoration: "none", fontFamily: "Space Mono, monospace", fontSize: 11 }}>← Back to course</Link>
+        <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 16, color: "var(--text)" }}>Lesson {lessonId}</div>
       </div>
 
       <div style={{ flex: 1, overflowY: "auto", padding: 28 }}>

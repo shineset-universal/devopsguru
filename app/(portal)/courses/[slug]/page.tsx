@@ -9,8 +9,9 @@ const MOCK_MODULES = [
   { id: 3, title: "Module 3: Advanced Topics",    lessons: [{ id: 6, title: "Shell Scripting", durationMin: 45, completed: false }, { id: 7, title: "Process Management", durationMin: 35, completed: false }] },
 ];
 
-export default function CourseDetailPage({ params }: { params: { slug: string } }): React.JSX.Element {
-  const course = MOCK_COURSES.find((c) => c.slug === params.slug);
+export default async function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }): Promise<React.JSX.Element> {
+  const { slug } = await params;
+  const course = MOCK_COURSES.find((c) => c.slug === slug);
   if (!course) notFound();
 
   const totalLessons = MOCK_MODULES.reduce((acc, m) => acc + m.lessons.length, 0);
