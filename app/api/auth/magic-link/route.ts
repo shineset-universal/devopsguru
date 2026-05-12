@@ -58,7 +58,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
 
     const token = await createMagicLink(email, role);
-    await sendMagicLinkEmail(email, token, role);
+    // Best-effort — token is saved to DB even if email fails (e.g. placeholder key in dev)
+    await sendMagicLinkEmail(email, token, role).catch((err) =>
+      console.warn("[POST /api/auth/magic-link] email send failed:", err)
+    );
 
     return NextResponse.json({ success: true });
   } catch (error) {

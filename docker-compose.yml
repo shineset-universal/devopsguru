@@ -87,6 +87,27 @@ services:
       - postgres
     restart: unless-stopped
 
+  e2e:
+    container_name: devopsguru-e2e
+    image: mcr.microsoft.com/playwright:v1.60.0-jammy
+    working_dir: /app
+    volumes:
+      - .:/app
+      - e2e_node_modules:/app/node_modules
+    environment:
+      - BASE_URL=http://devopsguru-app:3000
+      - ADMIN_URL=http://devopsguru-admin:3001
+      - DATABASE_URL=postgresql://devopsguru:devopsguru_pass@devopsguru-postgres:5432/devopsguru_db
+    env_file:
+      - .env.local
+    depends_on:
+      - app
+      - admin
+    profiles:
+      - e2e
+    command: sh -c "npm install && npx playwright test"
+
 volumes:
   postgres_data:
   redis_data:
+  e2e_node_modules:

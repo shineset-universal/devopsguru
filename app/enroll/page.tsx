@@ -7,14 +7,30 @@ export default function EnrollPage(): React.JSX.Element {
   const [name, setName]   = useState("");
   const [email, setEmail] = useState("");
   const [code, setCode]   = useState("");
-  const [sent, setSent]   = useState(false);
-  const [err, setErr]     = useState("");
+  const [sent, setSent]       = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr]         = useState("");
 
-  function submit(): void {
-    if (!name.trim())        { setErr("Please enter your full name.");    return; }
-    if (!email.includes("@")){ setErr("Please enter a valid email.");     return; }
-    if (code.length < 4)     { setErr("Please enter your access code."); return; }
-    setErr(""); setSent(true);
+  async function submit(): Promise<void> {
+    if (!name.trim())         { setErr("Please enter your full name.");    return; }
+    if (!email.includes("@")) { setErr("Please enter a valid email.");     return; }
+    if (code.length < 4)      { setErr("Please enter your access code."); return; }
+    setErr("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/enroll", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), code: code.trim() }),
+      });
+      const data = await res.json() as { error?: string };
+      if (!res.ok) { setErr(data.error ?? "Something went wrong. Please try again."); return; }
+      setSent(true);
+    } catch {
+      setErr("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -71,9 +87,10 @@ export default function EnrollPage(): React.JSX.Element {
 
               <button
                 onClick={submit}
-                style={{ width: "100%", background: "var(--accent)", border: "none", color: "#050810", padding: "11px 22px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, cursor: "pointer" }}
+                disabled={loading}
+                style={{ width: "100%", background: loading ? "var(--border)" : "var(--accent)", border: "none", color: loading ? "var(--text-dim)" : "#050810", padding: "11px 22px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, cursor: loading ? "default" : "pointer" }}
               >
-                Create my account
+                {loading ? "Creating account..." : "Create my account"}
               </button>
 
               <div style={{ marginTop: 20, textAlign: "center" }}>

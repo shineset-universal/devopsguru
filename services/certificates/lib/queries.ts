@@ -45,7 +45,7 @@ export async function getCertificateById(
 export async function insertCertificate(
   studentId: number,
   courseId: number,
-  certUrl: string
+  certUrl: string | null
 ): Promise<void> {
   await pool.query(
     `INSERT INTO certificates (student_id, course_id, cert_url)

@@ -10,14 +10,34 @@ export default function LoginPage(): React.JSX.Element {
   const [email, setEmail] = useState("");
   const [name, setName]   = useState("");
   const [code, setCode]   = useState("");
-  const [sent, setSent]   = useState(false);
-  const [err, setErr]     = useState("");
+  const [sent, setSent]       = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr]         = useState("");
 
-  function submit(): void {
-    if (mode === "enroll" && !name.trim()) { setErr("Please enter your full name."); return; }
-    if (!email.includes("@"))              { setErr("Please enter a valid email.");   return; }
+  async function submit(): Promise<void> {
+    if (mode === "enroll" && !name.trim())   { setErr("Please enter your full name."); return; }
+    if (!email.includes("@"))                 { setErr("Please enter a valid email.");   return; }
     if (mode === "enroll" && code.length < 4) { setErr("Please enter your access code."); return; }
-    setErr(""); setSent(true);
+    setErr("");
+    setLoading(true);
+    try {
+      const endpoint = mode === "enroll" ? "/api/enroll" : "/api/auth/magic-link";
+      const body = mode === "enroll"
+        ? { name: name.trim(), email: email.trim(), code: code.trim() }
+        : { email: email.trim(), role: "student" };
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json() as { error?: string };
+      if (!res.ok) { setErr(data.error ?? "Something went wrong."); return; }
+      setSent(true);
+    } catch {
+      setErr("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -114,9 +134,10 @@ export default function LoginPage(): React.JSX.Element {
 
               <button
                 onClick={submit}
-                style={{ width: "100%", background: "var(--accent)", border: "none", color: "#050810", padding: "11px 22px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, cursor: "pointer" }}
+                disabled={loading}
+                style={{ width: "100%", background: loading ? "var(--border)" : "var(--accent)", border: "none", color: loading ? "var(--text-dim)" : "#050810", padding: "11px 22px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, cursor: loading ? "default" : "pointer" }}
               >
-                {mode === "login" ? "Send magic link" : "Create my account"}
+                {loading ? "Sending..." : mode === "login" ? "Send magic link" : "Create my account"}
               </button>
             </>
           ) : (

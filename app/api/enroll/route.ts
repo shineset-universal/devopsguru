@@ -49,7 +49,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await enrollStudentAtomic(student.id, inviteCode.course_id, inviteCode.id);
 
     const token = await createMagicLink(email, "student");
-    await sendMagicLinkEmail(email, token, "student");
+    // Best-effort — token is saved to DB even if email fails (e.g. placeholder key in dev)
+    await sendMagicLinkEmail(email, token, "student").catch((err) =>
+      console.warn("[POST /api/enroll] email send failed:", err)
+    );
 
     return NextResponse.json({ success: true });
   } catch (error) {

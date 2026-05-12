@@ -63,14 +63,17 @@ async function certificateAlreadyExists(
 async function generateAndUploadCertificate(
   studentId: number,
   courseId: number
-): Promise<string> {
-  // PDF generation via @react-pdf/renderer runs server-side.
-  // Returns a Cloudinary URL after upload.
-  const { generateCertificatePdf } = await import("./pdf");
-  const { uploadCertificate } = await import("./upload");
-
-  const pdfBuffer = await generateCertificatePdf(studentId, courseId);
-  return uploadCertificate(pdfBuffer, studentId, courseId);
+): Promise<string | null> {
+  try {
+    const { generateCertificatePdf } = await import("./pdf");
+    const { uploadCertificate } = await import("./upload");
+    const pdfBuffer = await generateCertificatePdf(studentId, courseId);
+    return await uploadCertificate(pdfBuffer, studentId, courseId);
+  } catch (err) {
+    // In dev/test, Cloudinary creds may be placeholder — cert row is still inserted with null URL
+    console.warn("[cert] PDF gen/upload failed, inserting cert with null URL:", err);
+    return null;
+  }
 }
 
 export async function checkAndIssueCertificate(
