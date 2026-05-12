@@ -16,7 +16,7 @@ export default function Footer(): React.JSX.Element {
           fontFamily: "Space Mono, monospace", fontSize: 10,
           letterSpacing: "0.1em", color: "var(--text-dim)", textTransform: "uppercase",
         }}>
-          // devopsguru.am · Yerevan, Armenia
+          {"// devopsguru.am · Yerevan, Armenia"}
         </span>
       </div>
       <div style={{ display: "flex", gap: 10 }}>

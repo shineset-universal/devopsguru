@@ -59,7 +59,7 @@ export default function PortalSidebar(): React.JSX.Element {
           </span>
         </Link>
         <span style={{ display: "block", marginTop: 3, fontFamily: "Space Mono, monospace", fontSize: 10, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-          // devopsguru.am
+          {"// devopsguru.am"}
         </span>
       </div>
 

@@ -52,7 +52,7 @@ export default function LoginPage(): React.JSX.Element {
               DevOps<span style={{ color: "var(--accent)" }}>Guru</span>
             </span>
             <span style={{ display: "block", marginTop: 4, fontFamily: "Space Mono, monospace", fontSize: 10, letterSpacing: "0.1em", color: "var(--text-dim)", textTransform: "uppercase" }}>
-              // devopsguru.am
+              {"// devopsguru.am"}
             </span>
           </div>
 

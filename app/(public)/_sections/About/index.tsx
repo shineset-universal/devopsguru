@@ -18,7 +18,7 @@ export default function About(): React.JSX.Element {
       <div style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
         <div style={{ flex: 1 }}>
           <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 34, color: "var(--text)", margin: "0 0 4px", letterSpacing: "-0.02em" }}>Sarmen Gharibian</h2>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: 11, color: "var(--accent)", marginBottom: 22 }}>// Senior DevOps Engineer · Founder, DevOpsGuru</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: 11, color: "var(--accent)", marginBottom: 22 }}>{"// Senior DevOps Engineer · Founder, DevOpsGuru"}</div>
           <p style={{ fontFamily: "Syne, sans-serif", fontSize: 14, color: "var(--text-dim)", lineHeight: 1.85, margin: "0 0 28px", maxWidth: 500 }}>
             I build and ship production-grade infrastructure every day — on-premise Kubernetes clusters, GitOps pipelines, Istio service meshes, and cloud infrastructure at Ameriabank, one of Armenia&apos;s leading banks. I teach exactly what I use in production.
           </p>

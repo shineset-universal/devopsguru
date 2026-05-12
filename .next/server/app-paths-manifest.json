@@ -1,13 +1,10 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/dev-login/route": "app/api/dev-login/route.js",
-  "/auth/login/page": "app/auth/login/page.js",
   "/enroll/page": "app/enroll/page.js",
   "/(public)/page": "app/(public)/page.js",
-  "/(portal)/courses/page": "app/(portal)/courses/page.js",
-  "/(portal)/homework/page": "app/(portal)/homework/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
   "/(portal)/messages/[courseId]/page": "app/(portal)/messages/[courseId]/page.js",
+  "/(portal)/homework/page": "app/(portal)/homework/page.js",
+  "/(portal)/courses/page": "app/(portal)/courses/page.js",
   "/(portal)/recordings/page": "app/(portal)/recordings/page.js",
-  "/(portal)/sessions/page": "app/(portal)/sessions/page.js",
   "/(portal)/dashboard/page": "app/(portal)/dashboard/page.js"
 }
