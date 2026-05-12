@@ -16,7 +16,7 @@ services:
     restart: always
     networks:
       - internal
-      - nginx_network
+      - proxy-net
 
   admin:
     container_name: devopsguru-admin
@@ -35,7 +35,7 @@ services:
     restart: always
     networks:
       - internal
-      - nginx_network
+      - proxy-net
 
   postgres:
     container_name: devopsguru-postgres
@@ -78,6 +78,6 @@ volumes:
 networks:
   internal:
     driver: bridge
-  nginx_network:
+  proxy-net:
     external: true
-    name: ${NGINX_NETWORK}
+    name: proxy-net
