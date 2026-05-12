@@ -2,7 +2,10 @@ import crypto from "crypto";
 import { Resend } from "resend";
 import pool from "@/lib/db";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy — Resend throws at construction if API key is missing, so never instantiate at module level
+function getResend(): Resend {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 async function getMagicLinkExpiryMinutes(): Promise<number> {
   const result = await pool.query<{ value: string }>(
@@ -63,7 +66,7 @@ export async function sendMagicLinkEmail(
   const subject =
     role === "admin" ? "DevOpsGuru Admin Login" : "Your DevOpsGuru login link";
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: process.env.RESEND_FROM_EMAIL ?? "noreply@devopsguru.am",
     to: email,
     subject,

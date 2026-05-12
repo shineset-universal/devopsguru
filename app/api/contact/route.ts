@@ -1,9 +1,10 @@
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
 import pool from "@/lib/db";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend(): Resend { return new Resend(process.env.RESEND_API_KEY); }
 
 const schema = z.object({
   name: z.string().min(2).max(150),
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
 
     const adminEmail = process.env.ADMIN_EMAIL ?? "sarmen@devopsguru.am";
-    await resend.emails.send({
+    await getResend().emails.send({
       from: process.env.RESEND_FROM_EMAIL ?? "noreply@devopsguru.am",
       to: adminEmail,
       subject: `New contact request from ${name}`,

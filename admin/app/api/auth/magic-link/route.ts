@@ -1,10 +1,11 @@
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import crypto from "crypto";
 import { Resend } from "resend";
 import pool from "@/lib/db";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend(): Resend { return new Resend(process.env.RESEND_API_KEY); }
 const schema = z.object({ email: z.string().email() });
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
     const verifyUrl = `${baseUrl}/auth/verify?token=${token}`;
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: process.env.RESEND_FROM_EMAIL ?? "noreply@devopsguru.am",
       to: email,
       subject: "DevOpsGuru Admin Login",

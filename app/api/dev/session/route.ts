@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import pool from "@/lib/db";
 import { signToken } from "@/services/auth/lib/jwt";
