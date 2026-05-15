@@ -63,11 +63,17 @@ export async function sendMagicLinkEmail(
 ): Promise<void> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const verifyUrl = `${baseUrl}/auth/verify?token=${token}`;
+  const fromEmail = process.env.RESEND_FROM_EMAIL ?? "noreply@devopsguru.am";
   const subject =
     role === "admin" ? "DevOpsGuru Admin Login" : "Your DevOpsGuru login link";
 
-  await getResend().emails.send({
-    from: process.env.RESEND_FROM_EMAIL ?? "noreply@devopsguru.am",
+  const keyPrefix = process.env.RESEND_API_KEY?.slice(0, 10) ?? "MISSING";
+  console.log(
+    `[APP] ${new Date().toISOString()} INFO  [magic-link] sending email to=${email} role=${role} from=${fromEmail} key_prefix=${keyPrefix}...`
+  );
+
+  const result = await getResend().emails.send({
+    from: fromEmail,
     to: email,
     subject,
     html: `
@@ -76,4 +82,15 @@ export async function sendMagicLinkEmail(
       <p style="color:#888;font-size:12px">If you didn't request this, ignore this email.</p>
     `,
   });
+
+  if (result.error) {
+    console.error(
+      `[APP] ${new Date().toISOString()} ERROR [magic-link] Resend rejected email to=${email} error=${JSON.stringify(result.error)}`
+    );
+    throw new Error(`Resend error: ${JSON.stringify(result.error)}`);
+  }
+
+  console.log(
+    `[APP] ${new Date().toISOString()} INFO  [magic-link] email sent ok to=${email} id=${result.data?.id}`
+  );
 }
