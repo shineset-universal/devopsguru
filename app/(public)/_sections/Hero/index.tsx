@@ -57,7 +57,7 @@ export default function Hero(): React.JSX.Element {
           </div>
 
           <div style={{ display: "flex", marginTop: 56, borderTop: "1px solid var(--border)", paddingTop: 32, maxWidth: 440 }}>
-            {([["9", "Modules"], ["20+", "Weeks"], ["100%", "Hands-on"], ["7+", "Yrs exp."]] as const).map(([v, l], i) => (
+            {([["9", "Modules"], ["20+", "Weeks"], ["100%", "Hands-on"], ["15+", "Yrs exp."]] as const).map(([v, l], i) => (
               <div key={l} style={{
                 flex: 1, paddingRight: 20,
                 borderRight: i < 3 ? "1px solid var(--border)" : "none",
@@ -71,7 +71,7 @@ export default function Hero(): React.JSX.Element {
         </div>
 
         {/* ── Right: animated terminal ── */}
-        <div style={{ flexShrink: 0, width: 400 }}>
+        <div style={{ flexShrink: 0, width: 560 }}>
           <HeroAnimation />
         </div>
 

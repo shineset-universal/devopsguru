@@ -1,16 +1,14 @@
-import React from "react";
-
-const IMAGE_ICONS: Record<string, { src: string; bg: string }> = {
-  linux:      { src: "/icons/linux.png",     bg: "#0d1117" },
-  git:        { src: "/icons/git.png",        bg: "#1a0a08" },
-  cicd:       { src: "/icons/cicd.png",       bg: "#0d1117" },
-  terraform:  { src: "/icons/ansible.png",    bg: "#111" },
-  docker:     { src: "/icons/docker.png",     bg: "#050d1a" },
-  kubernetes: { src: "/icons/kubernetes.png", bg: "#050d1a" },
-  gitops:     { src: "/icons/argocd.png",     bg: "#fff" },
+const IMAGE_ICONS: Record<string, string> = {
+  linux:      "/icons/linux.png",
+  git:        "/icons/git.svg",
+  cicd:       "/icons/cicd.png",
+  terraform:  "/icons/ansible.png",
+  docker:     "/icons/docker.png",
+  kubernetes: "/icons/kubernetes.png",
+  gitops:     "/icons/argocd.png",
 };
 
-function IconGrafana(): React.JSX.Element {
+function IconGrafana() {
   return (
     <svg viewBox="0 0 48 48" width="100%" height="100%">
       <rect width="48" height="48" rx="8" fill="#0a1a0a"/>
@@ -22,7 +20,7 @@ function IconGrafana(): React.JSX.Element {
   );
 }
 
-function IconCapstone(): React.JSX.Element {
+function IconCapstone() {
   return (
     <svg viewBox="0 0 48 48" width="100%" height="100%">
       <rect width="48" height="48" rx="8" fill="#050d1a"/>
@@ -32,19 +30,17 @@ function IconCapstone(): React.JSX.Element {
   );
 }
 
-function ImageIcon({ src, bg, size }: { src: string; bg: string; size: number }): React.JSX.Element {
-  return (
-    <div style={{ width: size, height: size, background: bg, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", padding: 6, boxSizing: "border-box" }}>
-      <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
-    </div>
-  );
+export default function ModuleIcon({ name }: { name: string }) {
+  const src = IMAGE_ICONS[name];
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt=""
+        style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+      />
+    );
+  }
+  if (name === "grafana") return <IconGrafana />;
+  return <IconCapstone />;
 }
-
-export default function ModuleIcon({ name, size = 64 }: { name: string; size?: number }): React.JSX.Element {
-  const imgIcon = IMAGE_ICONS[name];
-  if (imgIcon) return <ImageIcon src={imgIcon.src} bg={imgIcon.bg} size={size} />;
-  if (name === "grafana") return <div style={{ width: size, height: size }}><IconGrafana /></div>;
-  return <div style={{ width: size, height: size }}><IconCapstone /></div>;
-}
-
-export { IMAGE_ICONS };

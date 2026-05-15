@@ -124,30 +124,30 @@ export default function HeroAnimation(): React.JSX.Element {
           <div style={{ height: 2, background: `linear-gradient(90deg, ${seq.accent}, transparent)` }}/>
 
           {/* title bar */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 16px", borderBottom: "1px solid #1a2340", background: "#080e1c" }}>
-            <div style={{ display: "flex", gap: 6 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 20px", borderBottom: "1px solid #1a2340", background: "#080e1c" }}>
+            <div style={{ display: "flex", gap: 7 }}>
               {["#ff6060", "#ffaa00", "#00ff88"].map((c) => (
-                <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, opacity: 0.7 }}/>
+                <div key={c} style={{ width: 13, height: 13, borderRadius: "50%", background: c, opacity: 0.7 }}/>
               ))}
             </div>
-            <span style={{ flex: 1, textAlign: "center", fontFamily: "Space Mono, monospace", fontSize: 9, color: "#2a3450", letterSpacing: "0.08em" }}>
+            <span style={{ flex: 1, textAlign: "center", fontFamily: "Space Mono, monospace", fontSize: 11, color: "#2a3450", letterSpacing: "0.08em" }}>
               bash — devopsguru
             </span>
           </div>
 
           {/* terminal body */}
-          <div style={{ padding: "16px 18px 20px", minHeight: 180 }}>
-            <div style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 12 }}>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: 11, color: seq.accent, flexShrink: 0 }}>
+          <div style={{ padding: "22px 26px 26px", minHeight: 260 }}>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 16 }}>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: 13, color: seq.accent, flexShrink: 0 }}>
                 {seq.prompt}
               </span>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: 11, color: "#e8edf8", wordBreak: "break-all" }}>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: 13, color: "#e8edf8", wordBreak: "break-all" }}>
                 {seq.cmd.slice(0, typed)}
                 <span style={{ borderRight: `2px solid ${seq.accent}`, marginLeft: 1, animation: "blink 1s step-end infinite" }}>&nbsp;</span>
               </span>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
               {seq.lines.slice(0, visibleLines).map((line, i) => (
                 <motion.div
                   key={`${idx}-${i}`}
@@ -155,7 +155,7 @@ export default function HeroAnimation(): React.JSX.Element {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span style={{ fontFamily: "Space Mono, monospace", fontSize: 10, color: line.color, lineHeight: 1.8 }}>
+                  <span style={{ fontFamily: "Space Mono, monospace", fontSize: 12, color: line.color, lineHeight: 1.8 }}>
                     {line.text}
                   </span>
                 </motion.div>
@@ -164,13 +164,13 @@ export default function HeroAnimation(): React.JSX.Element {
           </div>
 
           {/* status bar */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 16px", background: `${seq.accent}12`, borderTop: `1px solid ${seq.accent}22` }}>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: 8, color: seq.accent, letterSpacing: "0.08em" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 20px", background: `${seq.accent}12`, borderTop: `1px solid ${seq.accent}22` }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: 10, color: seq.accent, letterSpacing: "0.08em" }}>
               ● LIVE
             </span>
-            <div style={{ display: "flex", gap: 16 }}>
+            <div style={{ display: "flex", gap: 20 }}>
               {["k8s", "docker", "tf", "argocd"].map((t, i) => (
-                <span key={t} style={{ fontFamily: "Space Mono, monospace", fontSize: 8, color: i === idx ? seq.accent : "#2a3450", transition: "color 0.4s" }}>{t}</span>
+                <span key={t} style={{ fontFamily: "Space Mono, monospace", fontSize: 10, color: i === idx ? seq.accent : "#2a3450", transition: "color 0.4s" }}>{t}</span>
               ))}
             </div>
           </div>
