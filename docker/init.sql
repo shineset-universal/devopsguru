@@ -189,5 +189,31 @@ CREATE TABLE contact_requests (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- ADMIN USERS (password + TOTP 2FA — no magic links)
+CREATE TABLE admin_users (
+  id            SERIAL PRIMARY KEY,
+  email         VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  totp_secret   VARCHAR(255) NOT NULL,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- PUBLIC VIDEOS (free preview lessons on /videos page)
+CREATE TABLE public_videos (
+  id            SERIAL PRIMARY KEY,
+  youtube_id    VARCHAR(30),
+  video_url     VARCHAR(500),
+  title         VARCHAR(200) NOT NULL,
+  description   TEXT,
+  duration      VARCHAR(20),
+  course        VARCHAR(100),
+  course_accent VARCHAR(10) NOT NULL DEFAULT '#00d4ff',
+  icon_key      VARCHAR(30) NOT NULL DEFAULT 'linux',
+  level         VARCHAR(20) NOT NULL DEFAULT 'Beginner' CHECK (level IN ('Beginner','Intermediate','Advanced')),
+  sort_order    INTEGER NOT NULL DEFAULT 0,
+  published     BOOLEAN NOT NULL DEFAULT false,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 -- Test database for integration tests
 CREATE DATABASE devopsguru_test;

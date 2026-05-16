@@ -18,9 +18,10 @@ const NAV: NavSection[] = [
   {
     section: "Content",
     items: [
-      { id: "courses",      label: "Courses",     icon: "◆", href: "/dashboard/courses" },
-      { id: "recordings",   label: "Recordings",  icon: "▷", href: "/dashboard/recordings" },
-      { id: "settings",     label: "Settings",    icon: "⚙", href: "/dashboard/settings" },
+      { id: "courses",    label: "Courses",       icon: "◆", href: "/dashboard/courses" },
+      { id: "videos",     label: "Public videos", icon: "▶", href: "/dashboard/videos" },
+      { id: "recordings", label: "Recordings",    icon: "▷", href: "/dashboard/recordings" },
+      { id: "settings",   label: "Settings",      icon: "⚙", href: "/dashboard/settings" },
     ],
   },
   {

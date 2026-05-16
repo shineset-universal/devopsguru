@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
+const PUBLIC_PATHS = [
+  "/login",
+  "/api/auth/login",
+  "/api/auth/verify-totp",
+  "/api/auth/logout",
+  "/api/setup",
+];
+
+function isPublic(pathname: string): boolean {
+  return PUBLIC_PATHS.some((p) => pathname.startsWith(p));
+}
+
 function reqLog(req: NextRequest, action: string): void {
   const ip =
     req.headers.get("x-forwarded-for") ??
@@ -14,8 +26,8 @@ function reqLog(req: NextRequest, action: string): void {
 export async function middleware(req: NextRequest): Promise<NextResponse> {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/login")) {
-    reqLog(req, "pass (login page)");
+  if (isPublic(pathname)) {
+    reqLog(req, "pass (public)");
     return NextResponse.next();
   }
 

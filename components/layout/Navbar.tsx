@@ -29,6 +29,16 @@ export default function Navbar(): React.JSX.Element {
             {label}
           </a>
         ))}
+        <Link
+          href="/videos"
+          style={{
+            fontFamily: "Space Mono, monospace", fontSize: 11,
+            letterSpacing: "0.06em", color: "var(--accent)",
+            textTransform: "uppercase", cursor: "pointer", textDecoration: "none",
+          }}
+        >
+          Free videos
+        </Link>
         <Link href="/auth/login" style={{
           background: "transparent",
           border: "1px solid var(--border)",
