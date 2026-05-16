@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ModuleIcon from "@/components/icons/ModuleIcon";
 
 export interface PublicVideo {
@@ -148,12 +149,12 @@ export default function VideosClient({ dbVideos }: { dbVideos: PublicVideo[] }):
               </p>
             )}
             <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", gap: 12 }}>
-              <a href="/enroll" style={{ background: "var(--accent)", color: "#050810", padding: "10px 24px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
+              <Link href="/enroll" style={{ background: "var(--accent)", color: "#050810", padding: "10px 24px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
                 Enroll for full access
-              </a>
-              <a href="/#courses" style={{ background: "transparent", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "10px 24px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, textDecoration: "none", display: "inline-block" }}>
+              </Link>
+              <Link href="/#courses" style={{ background: "transparent", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "10px 24px", borderRadius: 6, fontFamily: "Space Mono, monospace", fontSize: 11, textDecoration: "none", display: "inline-block" }}>
                 View curriculum
-              </a>
+              </Link>
             </div>
           </div>
         </div>
